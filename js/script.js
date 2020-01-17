@@ -45,6 +45,9 @@ var quotes = [
     year: "2009"
   }
 ];
+//Resets the quote on an automatic timer set to a variable for possible interactions within the code
+
+var quoteRefresh = setInterval(printQuote, 10000);
 
 /*
   Takes an array generates a random index and returns
@@ -58,14 +61,37 @@ function getRandomQuote(arr) {
 }
 
 /*
+  Grabs and returns a random number from 0-255 to set random RGB colors
+*/
+
+function randomRGB(){
+  return Math.floor(Math.random() * 256 );
+}
+
+/*
+  Creates the HTML string needed to set the background color by calling the randomRGB function.
+  Then sets the background color.
+*/
+function setBackground(){
+  var bgColor = 'rgb(';
+  bgColor += randomRGB() + ',';
+  bgColor += randomRGB() + ',';
+  bgColor += randomRGB() + ')';
+
+  document.body.style.background = bgColor;
+}
+
+/*
   Calls the getRandomQuote function and stores the randomized quote in a new object.
   Then begins to build the HTML string starting with the quote and source data.
-  Checks if there is a year and citation and adds that code to the HTML string
+  Checks if there is a year, citation or reference and adds that code to the HTML string
   and prints that string.
 */
 function printQuote(){
   var html = '';
   var quoteData = getRandomQuote(quotes);
+  clearInterval(quoteRefresh);  // Prevents instant refresh
+  setBackground(); //Sets a random color for the background.
   html += '<p class="quote">' + quoteData.quote + '</p>';
   html += '<p class="source">' + quoteData.source;
   if(quoteData.citation){
@@ -79,6 +105,7 @@ function printQuote(){
   }
   html +='</p>';
   document.getElementById('quote-box').innerHTML = html;
+  quoteRefresh = setInterval(printQuote, 10000); // Resets the refresh timer
 }
 
 
