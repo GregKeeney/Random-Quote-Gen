@@ -74,6 +74,9 @@ function printQuote(){
   if(quoteData.year){
     html += '<span class="year">' + quoteData.year + '</span>'
   }
+  if(quoteData.reference){
+    html += '<span>, In reference to ' + quoteData.reference + '</span>'
+  }
   html +='</p>';
   document.getElementById('quote-box').innerHTML = html;
 }
