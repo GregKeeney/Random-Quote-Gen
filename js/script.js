@@ -1,11 +1,14 @@
 /******************************************
 Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
+By, Gregory Keeney
+
+I am looking to get an exceed rating.
 ******************************************/
 
 /*
 Declaring all the quotes in an array as objects including years and citations
-if they were available.  Added reference to give certain quotes better context
+if they were available.  Added reference to give certain quotes better context.
 */
 var quotes = [
   {
@@ -45,14 +48,15 @@ var quotes = [
     year: "2009"
   }
 ];
-//Resets the quote on an automatic timer set to a variable for possible interactions within the code
+
+//Resets the quote on an automatic timer set to a variable for possible interactions within the code.
 
 var quoteRefresh = setInterval(printQuote, 10000);
 
 /*
-  Takes an array generates a random index and returns
-  that idex and returns a random quote object.
+  Takes an array generates a random index and uses that index to select a quote then returns that object.
 */
+
 function getRandomQuote(arr) {
   var randomQuote = {};
   var index = Math.floor(Math.random() * arr.length);
@@ -61,7 +65,7 @@ function getRandomQuote(arr) {
 }
 
 /*
-  Grabs and returns a random number from 0-255 to set random RGB colors
+  Grabs and returns a random number from 0-255 to set random RGB colors.
 */
 
 function randomRGB(){
@@ -72,12 +76,12 @@ function randomRGB(){
   Creates the HTML string needed to set the background color by calling the randomRGB function.
   Then sets the background color.
 */
+
 function setBackground(){
   var bgColor = 'rgb(';
   bgColor += randomRGB() + ',';
   bgColor += randomRGB() + ',';
   bgColor += randomRGB() + ')';
-
   document.body.style.background = bgColor;
 }
 
@@ -87,10 +91,11 @@ function setBackground(){
   Checks if there is a year, citation or reference and adds that code to the HTML string
   and prints that string.
 */
+
 function printQuote(){
   var html = '';
   var quoteData = getRandomQuote(quotes);
-  clearInterval(quoteRefresh);  // Prevents instant refresh
+  clearInterval(quoteRefresh);  // Prevents instant quote refresh
   setBackground(); //Sets a random color for the background.
   html += '<p class="quote">' + quoteData.quote + '</p>';
   html += '<p class="source">' + quoteData.source;
